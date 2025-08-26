@@ -10,16 +10,36 @@ export default function HeroNavbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
 
   return (
-    <div className="absolute top-0 left-0 z-50 w-full px-4 sm:px-6 lg:px-24 py-4 flex items-center justify-between text-white">
-      {/* Logo */}
-      <div className="flex items-center gap-2">
-        <Image src="/logo.jpg" alt="Tetemeko Logo" width={36} height={36} priority />
-        <span className="text-lg sm:text-xl md:text-2xl font-bold">Tetemeko Media Group LTD</span>
+    <>
+      {/* Logo - fixed top-left */}
+      <div className="fixed top-4 left-4 z-50 flex items-center gap-2">
+        <Image
+          src="/logo.jpg"
+          alt="Tetemeko Logo"
+          width={36}
+          height={36}
+          priority
+          className=""
+        />
+        <span className="hidden sm:inline text-lg sm:text-xl md:text-2xl font-bold text-white drop-shadow-lg">
+          Tetemeko Media Group LTD
+        </span>
       </div>
 
-      {/* Desktop Navigation */}
-      <nav className="hidden md:flex gap-4 lg:gap-6">
-        {navLinks.map(link => (
+      {/* Mobile Menu Button - fixed top-right */}
+      <div className="fixed top-4 right-4 z-50 md:hidden">
+        <button
+          onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label="Toggle menu"
+          className="text-white"
+        >
+          {mobileOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
+      </div>
+
+      {/* Desktop Navigation (centered at top, not sticky on mobile) */}
+      <nav className="hidden md:flex fixed top-6 left-1/2 -translate-x-1/2 z-40 gap-6 bg-black/30 backdrop-blur-md px-6 py-2 rounded-full shadow-lg">
+        {navLinks.map((link) => (
           <Link
             key={link.name}
             href={link.path}
@@ -30,27 +50,10 @@ export default function HeroNavbar() {
         ))}
       </nav>
 
-      {/* Mobile Menu Button */}
-      <div className="md:hidden relative z-50">
-        <button onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle menu">
-          {mobileOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
-      </div>
-
       {/* Mobile Fullscreen Menu */}
       {mobileOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-95 z-40 flex flex-col items-center justify-center p-6">
-          {/* Close Button in Top Right */}
-          {/* <button
-            onClick={() => setMobileOpen(false)}
-            className="absolute top-4 right-4 text-white hover:text-gray-300 transition"
-            aria-label="Close menu"
-          >
-            <X size={32} />
-          </button> */}
-
-          {/* Navigation Links */}
-          {navLinks.map(link => (
+        <div className="fixed inset-0 bg-blue-950 bg-opacity-95 z-40 flex flex-col items-center justify-center p-6">
+          {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.path}
@@ -62,6 +65,6 @@ export default function HeroNavbar() {
           ))}
         </div>
       )}
-    </div>
+    </>
   )
 }
