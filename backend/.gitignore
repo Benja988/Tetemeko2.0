@@ -79,12 +79,9 @@ prisma/migrations/
 prisma/dev.db
 prisma/dev.db-journal
 prisma/schema.prisma
-<<<<<<< HEAD
-=======
 
 
 node_modules/
 .next/
 dist/
 *.zip
->>>>>>> 0c75af8 (update)
