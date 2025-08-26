@@ -1,4 +1,3 @@
-// Hero.tsx
 'use client';
 import { HERO_MEDIA } from '@/constants/heroMedia';
 import { useEffect, useState, useCallback, useRef } from 'react';
@@ -98,18 +97,20 @@ export default function Hero() {
       }}
       onMouseMove={handleMouseMove}
     >
-      {/* Background effects */}
+      {/* Enhanced background effects */}
       <div className="absolute inset-0 overflow-hidden z-0">
-        <div className="absolute top-0 left-0 w-64 h-64 bg-blue-900/10 rounded-full filter blur-[80px]"></div>
+        <div className="absolute top-0 left-0 w-64 h-64 bg-blue-900/20 rounded-full filter blur-[100px] animate-pulse-slow"></div>
+        <div className="absolute bottom-0 right-0 w-80 h-80 bg-purple-900/20 rounded-full filter blur-[100px] animate-pulse-medium delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-indigo-900/15 rounded-full filter blur-[120px] animate-pulse-fast delay-500"></div>
       </div>
 
       <AnimatePresence custom={direction} mode="wait">
         <motion.div
           key={current}
           custom={direction}
-          initial={{ opacity: 0, x: direction === 0 ? 100 : -100 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: direction === 0 ? -100 : 100 }}
+          initial={{ opacity: 0, x: direction === 0 ? 100 : -100, scale: 1.05 }}
+          animate={{ opacity: 1, x: 0, scale: 1 }}
+          exit={{ opacity: 0, x: direction === 0 ? -100 : 100, scale: 1.05 }}
           transition={transition}
           style={{
             transform: `perspective(1000px) rotateX(${-tilt.y}deg) rotateY(${tilt.x}deg)`,
@@ -119,6 +120,8 @@ export default function Hero() {
         >
           <HeroMedia media={HERO_MEDIA[current]} index={current} />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+          {/* Subtle overlay pattern */}
+          <div className="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48Y2lyY2xlIGZpbGw9IiNmZmYiIGN4PSIzMCIgY3k9IjMwIiByPSIxLjUiLz48L2c+PC9zdmc+')]"></div>
         </motion.div>
       </AnimatePresence>
 
@@ -126,7 +129,7 @@ export default function Hero() {
       <HeroContent />
       <HeroControls onPrev={prevSlide} onNext={nextSlide} />
 
-      {/* Progress indicator */}
+      {/* Enhanced progress indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2">
         {HERO_MEDIA.map((_, i) => (
           <button
@@ -135,25 +138,44 @@ export default function Hero() {
               setDirection(i > current ? 0 : 1);
               setCurrent(i);
             }}
-            className="h-1.5 rounded-full transition-all duration-300"
+            className="h-1.5 rounded-full transition-all duration-500 group"
             style={{
               width: i === current ? '24px' : '8px',
               backgroundColor: i === current ? 'white' : 'rgba(255,255,255,0.3)'
             }}
-          />
+          >
+            <div className="w-full h-full rounded-full overflow-hidden">
+              {i === current && (
+                <motion.div 
+                  className="h-full bg-gradient-to-r from-blue-400 to-purple-400"
+                  initial={{ width: "0%" }}
+                  animate={{ width: "100%" }}
+                  transition={{ duration: 12, ease: "linear" }}
+                />
+              )}
+            </div>
+          </button>
         ))}
       </div>
 
-      {/* Scroll indicator */}
+      {/* Enhanced scroll indicator */}
       <motion.div
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 1.5, repeat: Infinity }}
-        className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center"
+        className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center group"
       >
-        <span className="text-xs mb-1">Scroll Down</span>
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M12 5v14M19 12l-7 7-7-7"/>
-        </svg>
+        <span className="text-xs mb-1 text-white/80 group-hover:text-white transition-colors">Scroll Down</span>
+        <div className="relative w-8 h-12 flex justify-center">
+          <div className="w-6 h-10 border-2 border-white/40 rounded-full flex justify-center">
+            <motion.div 
+              className="w-1 h-2 bg-white/70 rounded-full mt-2"
+              animate={{ y: [0, 16, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            />
+          </div>
+          <div className="absolute top-8 w-1 h-1 bg-white/60 rounded-full transform rotate-45"></div>
+          <div className="absolute top-8 right-7 w-1 h-1 bg-white/60 rounded-full transform -rotate-45"></div>
+        </div>
       </motion.div>
     </section>
   );

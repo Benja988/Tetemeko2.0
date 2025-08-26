@@ -38,10 +38,24 @@ export default function HeroContent() {
           initial="hidden"
           animate="visible"
         >
-          {/* Background elements */}
+          {/* Enhanced background elements */}
           <div className="absolute inset-0 overflow-hidden z-0">
-            <div className="absolute -top-40 -left-40 w-80 h-80 bg-purple-500/20 rounded-full blur-3xl"></div>
-            <div className="absolute -bottom-40 -right-40 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl"></div>
+            <motion.div 
+              className="absolute -top-40 -left-40 w-80 h-80 bg-purple-500/20 rounded-full blur-3xl"
+              animate={{ 
+                scale: [1, 1.1, 1],
+                opacity: [0.2, 0.3, 0.2]
+              }}
+              transition={{ duration: 8, repeat: Infinity }}
+            ></motion.div>
+            <motion.div 
+              className="absolute -bottom-40 -right-40 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl"
+              animate={{ 
+                scale: [1, 1.1, 1],
+                opacity: [0.2, 0.3, 0.2]
+              }}
+              transition={{ duration: 8, repeat: Infinity, delay: 2 }}
+            ></motion.div>
           </div>
 
           {/* Tagline */}
@@ -49,9 +63,13 @@ export default function HeroContent() {
             className="relative z-10 mb-5 sm:mb-6"
             variants={itemVariants}
           >
-            <span className="inline-flex items-center uppercase tracking-wider bg-gradient-to-r from-blue-600/10 to-purple-600/10 px-4 py-2 rounded-full text-xs font-medium text-white/90 border border-white/10 backdrop-blur-md">
+            <motion.span 
+              className="inline-flex items-center uppercase tracking-wider bg-gradient-to-r from-blue-600/20 to-purple-600/20 px-4 py-2 rounded-full text-xs font-medium text-white/90 border border-white/10 backdrop-blur-md"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            >
               Kenya&apos;s Premier Multimedia Experience
-            </span>
+            </motion.span>
           </motion.div>
 
           {/* Headline */}
@@ -59,13 +77,25 @@ export default function HeroContent() {
             className="font-bold text-4xl xs:text-5xl sm:text-6xl leading-tight tracking-tight mb-5 sm:mb-6 relative z-10"
             variants={itemVariants}
           >
-            <span className="text-white">Tune In.</span>
-            <span className="block mt-2 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-              Connect.
-            </span>
-            <span className="block mt-3 text-lg sm:text-xl font-normal text-gray-300">
+            <motion.span 
+              className="text-white"
+              animate={{ textShadow: ["0 0 0px rgba(255,255,255,0)", "0 0 10px rgba(255,255,255,0.3)", "0 0 0px rgba(255,255,255,0)"] }}
+              transition={{ duration: 3, repeat: Infinity }}
+            >Tune In.</motion.span>
+            <motion.span 
+              className="block mt-2 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
+              animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+              transition={{ duration: 5, repeat: Infinity }}
+              style={{ backgroundSize: "200% 200%" }}
+            >Connect.</motion.span>
+            <motion.span 
+              className="block mt-3 text-lg sm:text-xl font-normal text-gray-300"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8 }}
+            >
               Only at Tetemeko Media
-            </span>
+            </motion.span>
           </motion.h1>
 
           {/* Subtext */}
@@ -83,29 +113,39 @@ export default function HeroContent() {
           >
             <Link href="/stations" className="w-full">
               <motion.button
-                whileHover={{ scale: 1.02 }}
+                whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
-                className="flex items-center justify-between w-full px-6 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium shadow-lg"
+                className="flex items-center justify-between w-full px-6 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium shadow-lg hover:shadow-blue-500/20 transition-all"
               >
                 <span className="flex items-center gap-3">
                   <FaBroadcastTower className="text-lg" /> 
                   <span>Our Stations</span>
                 </span>
-                <FaArrowRight />
+                <motion.div
+                  animate={{ x: [0, 5, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                >
+                  <FaArrowRight />
+                </motion.div>
               </motion.button>
             </Link>
 
             <Link href="/podcasts" className="w-full">
               <motion.button
-                whileHover={{ scale: 1.02 }}
+                whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
-                className="flex items-center justify-between w-full px-6 py-4 rounded-xl bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-medium shadow-lg"
+                className="flex items-center justify-between w-full px-6 py-4 rounded-xl bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-medium shadow-lg hover:shadow-purple-500/20 transition-all"
               >
                 <span className="flex items-center gap-3">
                   <FaPodcast className="text-lg" /> 
                   <span>Podcasts</span>
                 </span>
-                <FaArrowRight />
+                <motion.div
+                  animate={{ x: [0, 5, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity, delay: 0.5 }}
+                >
+                  <FaArrowRight />
+                </motion.div>
               </motion.button>
             </Link>
           </motion.div>
@@ -116,21 +156,33 @@ export default function HeroContent() {
             variants={itemVariants}
             transition={{ delay: 0.4 }}
           >
-            <div className="flex flex-col items-center p-4 rounded-xl bg-white/5 backdrop-blur-md border border-white/10">
+            <motion.div 
+              className="flex flex-col items-center p-4 rounded-xl bg-white/5 backdrop-blur-md border border-white/10"
+              whileHover={{ y: -5, backgroundColor: "rgba(255,255,255,0.08)" }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
               <FaRadio className="text-blue-400 text-xl mb-2" /> 
               <span className="text-white font-bold text-lg">3+</span>
               <span className="text-gray-400 text-xs">Stations</span>
-            </div>
-            <div className="flex flex-col items-center p-4 rounded-xl bg-white/5 backdrop-blur-md border border-white/10">
+            </motion.div>
+            <motion.div 
+              className="flex flex-col items-center p-4 rounded-xl bg-white/5 backdrop-blur-md border border-white/10"
+              whileHover={{ y: -5, backgroundColor: "rgba(255,255,255,0.08)" }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
               <FaGlobeAfrica className="text-green-400 text-xl mb-2" /> 
               <span className="text-white font-bold text-lg">10k+</span>
               <span className="text-gray-400 text-xs">Listeners</span>
-            </div>
-            <div className="flex flex-col items-center p-4 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 col-span-2">
+            </motion.div>
+            <motion.div 
+              className="flex flex-col items-center p-4 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 col-span-2"
+              whileHover={{ y: -5, backgroundColor: "rgba(255,255,255,0.08)" }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
               <FaBoxOpen className="text-orange-400 text-xl mb-2" /> 
               <span className="text-white font-bold text-lg">1,000+</span>
               <span className="text-gray-400 text-xs">Products</span>
-            </div>
+            </motion.div>
           </motion.div>
 
           {/* Reserve Button */}
@@ -151,10 +203,24 @@ export default function HeroContent() {
           initial="hidden"
           animate="visible"
         >
-          {/* Background elements */}
+          {/* Enhanced background elements */}
           <div className="absolute inset-0 overflow-hidden z-0">
-            <div className="absolute top-1/4 -left-40 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-1/4 -right-40 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl"></div>
+            <motion.div 
+              className="absolute top-1/4 -left-40 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl"
+              animate={{ 
+                scale: [1, 1.1, 1],
+                opacity: [0.2, 0.3, 0.2]
+              }}
+              transition={{ duration: 8, repeat: Infinity }}
+            ></motion.div>
+            <motion.div 
+              className="absolute bottom-1/4 -right-40 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl"
+              animate={{ 
+                scale: [1, 1.1, 1],
+                opacity: [0.2, 0.3, 0.2]
+              }}
+              transition={{ duration: 8, repeat: Infinity, delay: 2 }}
+            ></motion.div>
           </div>
 
           {/* Left Content */}
@@ -164,9 +230,13 @@ export default function HeroContent() {
               className="relative z-10 mb-6"
               variants={itemVariants}
             >
-              <span className="inline-flex items-center uppercase tracking-wider bg-gradient-to-r from-blue-600/10 to-purple-600/10 px-4 py-2 rounded-full text-xs font-medium text-white/90 border border-white/10 backdrop-blur-md">
+              <motion.span 
+                className="inline-flex items-center uppercase tracking-wider bg-gradient-to-r from-blue-600/20 to-purple-600/20 px-4 py-2 rounded-full text-xs font-medium text-white/90 border border-white/10 backdrop-blur-md"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              >
                 Kenya&apos;s Premier Multimedia Experience
-              </span>
+              </motion.span>
             </motion.div>
 
             {/* Headline */}
@@ -174,13 +244,25 @@ export default function HeroContent() {
               className="font-bold text-5xl xl:text-6xl 2xl:text-7xl leading-tight tracking-tight mb-6 relative z-10"
               variants={itemVariants}
             >
-              <span className="text-white">Tune In.</span>
-              <span className="block mt-3 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                Connect.
-              </span>
-              <span className="block mt-4 text-xl xl:text-2xl font-normal text-gray-300">
+              <motion.span 
+                className="text-white"
+                animate={{ textShadow: ["0 0 0px rgba(255,255,255,0)", "0 0 10px rgba(255,255,255,0.3)", "0 0 0px rgba(255,255,255,0)"] }}
+                transition={{ duration: 3, repeat: Infinity }}
+              >Tune In.</motion.span>
+              <motion.span 
+                className="block mt-3 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
+                animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+                transition={{ duration: 5, repeat: Infinity }}
+                style={{ backgroundSize: "200% 200%" }}
+              >Connect.</motion.span>
+              <motion.span 
+                className="block mt-4 text-xl xl:text-2xl font-normal text-gray-300"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.8 }}
+              >
                 Only at Tetemeko Media Group
-              </span>
+              </motion.span>
             </motion.h1>
 
             {/* Subtext */}
@@ -200,10 +282,16 @@ export default function HeroContent() {
                 <motion.button
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.98 }}
-                  className="flex items-center gap-3 px-6 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium shadow-lg"
+                  className="flex items-center gap-3 px-6 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium shadow-lg hover:shadow-blue-500/20 transition-all"
                 >
                   <FaBroadcastTower className="text-lg" /> 
                   <span>Our Stations</span>
+                  <motion.div
+                    animate={{ x: [0, 5, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  >
+                    <FaArrowRight />
+                  </motion.div>
                 </motion.button>
               </Link>
 
@@ -211,10 +299,16 @@ export default function HeroContent() {
                 <motion.button
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.98 }}
-                  className="flex items-center gap-3 px-6 py-4 rounded-xl bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-medium shadow-lg"
+                  className="flex items-center gap-3 px-6 py-4 rounded-xl bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-medium shadow-lg hover:shadow-purple-500/20 transition-all"
                 >
                   <FaPodcast className="text-lg" /> 
                   <span>Podcasts</span>
+                  <motion.div
+                    animate={{ x: [0, 5, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity, delay: 0.5 }}
+                  >
+                    <FaArrowRight />
+                  </motion.div>
                 </motion.button>
               </Link>
             </motion.div>
@@ -225,27 +319,39 @@ export default function HeroContent() {
               variants={itemVariants}
               transition={{ delay: 0.4 }}
             >
-              <div className="flex items-center gap-3 p-3 rounded-xl bg-white/5 backdrop-blur-md border border-white/10">
+              <motion.div 
+                className="flex items-center gap-3 p-3 rounded-xl bg-white/5 backdrop-blur-md border border-white/10"
+                whileHover={{ y: -5, backgroundColor: "rgba(255,255,255,0.08)" }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
                 <FaRadio className="text-blue-400 text-xl" /> 
                 <div>
                   <div className="text-white font-bold">3+</div>
                   <div className="text-gray-400 text-sm">Stations</div>
                 </div>
-              </div>
-              <div className="flex items-center gap-3 p-3 rounded-xl bg-white/5 backdrop-blur-md border border-white/10">
+              </motion.div>
+              <motion.div 
+                className="flex items-center gap-3 p-3 rounded-xl bg-white/5 backdrop-blur-md border border-white/10"
+                whileHover={{ y: -5, backgroundColor: "rgba(255,255,255,0.08)" }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
                 <FaGlobeAfrica className="text-green-400 text-xl" /> 
                 <div>
                   <div className="text-white font-bold">10k+</div>
                   <div className="text-gray-400 text-sm">Listeners</div>
                 </div>
-              </div>
-              <div className="flex items-center gap-3 p-3 rounded-xl bg-white/5 backdrop-blur-md border border-white/10">
+              </motion.div>
+              <motion.div 
+                className="flex items-center gap-3 p-3 rounded-xl bg-white/5 backdrop-blur-md border border-white/10"
+                whileHover={{ y: -5, backgroundColor: "rgba(255,255,255,0.08)" }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
                 <FaBoxOpen className="text-orange-400 text-xl" /> 
                 <div>
                   <div className="text-white font-bold">1,000+</div>
                   <div className="text-gray-400 text-sm">Products</div>
                 </div>
-              </div>
+              </motion.div>
             </motion.div>
 
             {/* Reserve Button */}
@@ -257,7 +363,7 @@ export default function HeroContent() {
             </motion.div>
           </div>
 
-          {/* Right Content (Visual Element) */}
+          {/* Right Content (Enhanced Visual Element) */}
           <motion.div 
             className="relative z-10 flex-1 flex justify-center"
             variants={itemVariants}
@@ -266,16 +372,77 @@ export default function HeroContent() {
           >
             <div className="relative w-80 h-80 xl:w-96 xl:h-96">
               {/* Animated circles */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500/10 to-purple-500/10 blur-xl animate-pulse-slow"></div>
-              <div className="absolute inset-8 rounded-full bg-gradient-to-br from-blue-600/10 to-purple-600/10 blur-lg animate-pulse-medium"></div>
-              <div className="absolute inset-16 rounded-full bg-gradient-to-br from-blue-700/10 to-purple-700/10 blur-md animate-pulse-fast"></div>
+              <motion.div 
+                className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500/10 to-purple-500/10 blur-xl"
+                animate={{ 
+                  scale: [1, 1.1, 1],
+                  rotate: [0, 5, 0]
+                }}
+                transition={{ duration: 8, repeat: Infinity }}
+              ></motion.div>
+              <motion.div 
+                className="absolute inset-8 rounded-full bg-gradient-to-br from-blue-600/10 to-purple-600/10 blur-lg"
+                animate={{ 
+                  scale: [1, 1.1, 1],
+                  rotate: [0, -5, 0]
+                }}
+                transition={{ duration: 6, repeat: Infinity, delay: 1 }}
+              ></motion.div>
+              <motion.div 
+                className="absolute inset-16 rounded-full bg-gradient-to-br from-blue-700/10 to-purple-700/10 blur-md"
+                animate={{ 
+                  scale: [1, 1.1, 1],
+                  rotate: [0, 3, 0]
+                }}
+                transition={{ duration: 4, repeat: Infinity, delay: 2 }}
+              ></motion.div>
               
               {/* Central icon */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-32 h-32 xl:w-40 xl:h-40 rounded-full bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center shadow-2xl">
+                <motion.div 
+                  className="w-32 h-32 xl:w-40 xl:h-40 rounded-full bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center shadow-2xl"
+                  animate={{ 
+                    rotate: [0, 360],
+                    boxShadow: [
+                      "0 20px 25px -5px rgba(59, 130, 246, 0.4), 0 10px 10px -5px rgba(139, 92, 246, 0.3)",
+                      "0 25px 50px -12px rgba(59, 130, 246, 0.5), 0 15px 15px -5px rgba(139, 92, 246, 0.4)",
+                      "0 20px 25px -5px rgba(59, 130, 246, 0.4), 0 10px 10px -5px rgba(139, 92, 246, 0.3)"
+                    ]
+                  }}
+                  transition={{ 
+                    rotate: { duration: 20, repeat: Infinity, ease: "linear" },
+                    boxShadow: { duration: 3, repeat: Infinity }
+                  }}
+                >
                   <FaBroadcastTower className="text-white text-5xl xl:text-6xl" />
-                </div>
+                </motion.div>
               </div>
+
+              {/* Floating elements */}
+              <motion.div 
+                className="absolute top-0 left-0 w-8 h-8 rounded-full bg-blue-400/30 backdrop-blur-sm"
+                animate={{ 
+                  y: [0, -20, 0],
+                  scale: [1, 1.2, 1]
+                }}
+                transition={{ duration: 4, repeat: Infinity, delay: 0 }}
+              />
+              <motion.div 
+                className="absolute bottom-0 right-0 w-6 h-6 rounded-full bg-purple-400/30 backdrop-blur-sm"
+                animate={{ 
+                  y: [0, 20, 0],
+                  scale: [1, 1.2, 1]
+                }}
+                transition={{ duration: 4, repeat: Infinity, delay: 1 }}
+              />
+              <motion.div 
+                className="absolute top-0 right-0 w-4 h-4 rounded-full bg-white/40 backdrop-blur-sm"
+                animate={{ 
+                  y: [0, -15, 0],
+                  scale: [1, 1.1, 1]
+                }}
+                transition={{ duration: 3, repeat: Infinity, delay: 2 }}
+              />
             </div>
           </motion.div>
         </motion.div>

@@ -23,26 +23,31 @@ const TopNav: FC = () => {
   }, [])
 
   return (
-    <header className={`w-full bg-gray-950 text-gray-200 text-sm sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'py-1 shadow-lg' : 'py-2'}`}>
+    <header
+      className={`hidden sm:block w-full bg-gray-950 text-gray-200 text-sm top-0 z-50 transition-all duration-300 ${
+        isScrolled ? 'py-1 shadow-lg' : 'py-2'
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-0">
-          
           {/* Contact Info */}
           <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-5 text-center sm:text-left">
-            <a 
-              href="mailto:info@tetemekomedia.co.ke" 
+            <a
+              href="mailto:info@tetemekomediagroup.org"
               className="flex items-center gap-2 group transition-all hover:text-blue-400"
             >
               <div className="p-1.5 bg-blue-500/10 rounded-lg group-hover:bg-blue-500/20 transition-all">
                 <IoMdMail className="text-blue-400" size={14} />
               </div>
-              <span className="text-xs sm:text-sm">info@tetemekomediagroup.org</span>
+              <span className="text-xs sm:text-sm">
+                info@tetemekomediagroup.org
+              </span>
             </a>
-            
+
             <div className="hidden sm:flex text-gray-500">|</div>
-            
-            <a 
-              href="https://wa.me/254719161925" 
+
+            <a
+              href="https://wa.me/254719161925"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 group transition-all hover:text-green-400"
@@ -64,7 +69,10 @@ const TopNav: FC = () => {
                 aria-label="Facebook"
                 className="p-2 bg-gray-800 rounded-lg hover:bg-blue-600 transition-all duration-300 group"
               >
-                <FaFacebookF size={14} className="text-blue-400 group-hover:text-white" />
+                <FaFacebookF
+                  size={14}
+                  className="text-blue-400 group-hover:text-white"
+                />
               </a>
 
               <a
@@ -74,7 +82,10 @@ const TopNav: FC = () => {
                 aria-label="Twitter"
                 className="p-2 bg-gray-800 rounded-lg hover:bg-black transition-all duration-300 group"
               >
-                <FaXTwitter size={14} className="text-gray-300 group-hover:text-white" />
+                <FaXTwitter
+                  size={14}
+                  className="text-gray-300 group-hover:text-white"
+                />
               </a>
 
               <a
@@ -84,7 +95,10 @@ const TopNav: FC = () => {
                 aria-label="Instagram"
                 className="p-2 bg-gray-800 rounded-lg hover:bg-pink-600 transition-all duration-300 group"
               >
-                <FaInstagram size={14} className="text-pink-400 group-hover:text-white" />
+                <FaInstagram
+                  size={14}
+                  className="text-pink-400 group-hover:text-white"
+                />
               </a>
 
               <a
@@ -94,14 +108,17 @@ const TopNav: FC = () => {
                 aria-label="YouTube"
                 className="p-2 bg-gray-800 rounded-lg hover:bg-red-600 transition-all duration-300 group"
               >
-                <FaYoutube size={14} className="text-red-400 group-hover:text-white" />
+                <FaYoutube
+                  size={14}
+                  className="text-red-400 group-hover:text-white"
+                />
               </a>
             </div>
-            
+
             <div className="hidden sm:block h-5 w-px bg-gray-700"></div>
-            
-            <Link 
-              href="/contact" 
+
+            <Link
+              href="/contact"
               className="text-xs sm:text-sm font-medium px-3 py-1.5 bg-primary/20 rounded-lg hover:bg-primary/30 hover:text-white transition-all duration-300"
             >
               Support
