@@ -1,0 +1,90 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log*
+yarn-error.log
+pnpm-debug.log
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Environment variables
+.env*
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Logs
+logs/
+*.log
+*.log.*
+debug.log
+pids/
+*.pid
+*.seed
+
+# Build artifacts
+dist/
+build/
+coverage/
+.cache/
+.nyc_output/
+.DS_Store
+
+# Database and cloud-related files
+*.sqlite
+*.sqlite-journal
+mongodb-data/
+dump/
+
+# Docker
+docker-compose.override.yml
+docker-compose.prod.yml
+docker-compose.dev.yml
+docker/
+*.dockerignore
+
+# Temporary files
+*.swp
+*.swo
+*.bak
+*.tmp
+*.log.*
+.idea/
+.vscode/
+.vscode-test/
+
+# GitHub Actions & CI/CD
+.github/workflows/*.log
+.github/actions/*.log
+
+# AWS, Cloudinary, and sensitive data
+*.pem
+*.pfx
+*.crt
+*.key
+config.json
+firebase.json
+
+# Ignore generated API documentation
+apidoc/
+swagger.json
+swagger.yaml
+
+# Ignore Next.js cache if needed
+.next/
+
+# Ignore Prisma files (if using Prisma ORM)
+prisma/migrations/
+prisma/dev.db
+prisma/dev.db-journal
+prisma/schema.prisma
+<<<<<<< HEAD
+=======
+
+
+node_modules/
+.next/
+dist/
+*.zip
+>>>>>>> 0c75af8 (update)
