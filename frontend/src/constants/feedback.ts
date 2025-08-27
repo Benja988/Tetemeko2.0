@@ -13,7 +13,7 @@ export const feedbacks: Feedback[] = [
     role: 'CEO, TechCorp',
     feedback:
       'Tetemeko Media Group has been instrumental in helping us scale our digital presence. Their creativity and professionalism are unmatched.',
-    image: '/prof.jpg',
+    image: '/avatar.jpg',
   },
   {
     id: '2',
@@ -21,7 +21,7 @@ export const feedbacks: Feedback[] = [
     role: 'Marketing Manager, Designify',
     feedback:
       'Working with Tetemeko Media Group was a game-changer for our brand. Their innovative strategies delivered exceptional results.',
-    image: '/prof.jpg',
+    image: '/avatar.jpg',
   },
   {
     id: '3',
@@ -29,7 +29,7 @@ export const feedbacks: Feedback[] = [
     role: 'Founder, StartupHub',
     feedback:
       'The team at Tetemeko Media Group is incredibly talented. They understood our vision and brought it to life with precision.',
-    image: '/prof.jpg',
+    image: '/avatar.jpg',
   },
   {
     id: '4',
@@ -37,7 +37,7 @@ export const feedbacks: Feedback[] = [
     role: 'Creative Director, Artify',
     feedback:
       'Tetemeko Media Group exceeded our expectations. Their attention to detail and commitment to excellence are truly commendable.',
-    image: '/prof.jpg',
+    image: '/avatar.jpg',
   },
   {
     id: '5',
@@ -45,6 +45,6 @@ export const feedbacks: Feedback[] = [
     role: 'Product Manager, InnovateX',
     feedback:
       'Their expertise in media and marketing helped us achieve our goals faster than we imagined. Highly recommended!',
-    image: '/prof.jpg',
+    image: '/avatar.jpg',
   },
 ];

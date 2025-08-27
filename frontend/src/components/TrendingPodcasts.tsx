@@ -19,7 +19,7 @@ type PodcastCardProps = {
 const PodcastCard: React.FC<PodcastCardProps> = React.memo(
   ({ podcast, index, isActive }) => (
     <motion.div
-      className="flex-shrink-0 w-[300px]"
+      className="flex-shrink-0 w-[180px] h-[260px] md:w-[200px] md:h-[280px]" // Reduced size for better fit
       style={{
         scale: isActive ? 1 : 0.9,
         opacity: isActive ? 1 : 0.7,
@@ -27,7 +27,7 @@ const PodcastCard: React.FC<PodcastCardProps> = React.memo(
       }}
       whileHover={{ scale: 1.05 }}
     >
-      <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700 hover:border-blue-500/30 transition-all duration-300 h-full flex flex-col">
+      <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-700 hover:border-blue-500/30 transition-all duration-300 h-full flex flex-col">
         <div className="relative aspect-square">
           {podcast.coverImage && (
             <Image
@@ -35,38 +35,40 @@ const PodcastCard: React.FC<PodcastCardProps> = React.memo(
               alt={podcast.title}
               fill
               className="object-cover"
+              sizes="(max-width: 640px) 180px, 200px"
             />
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/20 to-transparent" />
           {podcast.category && (
-            <div className="absolute top-3 right-3 bg-gray-900/80 text-xs font-medium px-2 py-1 rounded-full">
+            <div className="absolute top-2 right-2 bg-gray-900/80 text-[10px] font-medium px-1.5 py-0.5 rounded-full">
               {podcast.category.name}
             </div>
           )}
         </div>
 
-        <div className="p-5 flex-1 flex flex-col">
-          <h3 className="text-lg font-bold text-white line-clamp-2 mb-2">
+        <div className="p-3 flex-1 flex flex-col">
+          <h3 className="text-sm font-bold text-white line-clamp-2 mb-1 leading-tight">
             {podcast.title}
           </h3>
-          <p className="text-blue-400 text-sm mb-4">
+          <p className="text-blue-400 text-xs mb-2 line-clamp-1">
             Hosted by {podcast.createdBy?.name || "Unknown"}
           </p>
 
-          <div className="flex items-center gap-4 text-gray-400 text-xs mb-5 mt-auto">
+          <div className="flex items-center gap-3 text-gray-400 text-[10px] mb-3 mt-auto">
             <div className="flex items-center gap-1">
-              <FiClock size={14} />
+              <FiClock size={10} />
               <span>45m</span>
             </div>
-            {/* <div className="flex items-center gap-1">
-              <FaHeadphones size={14} />
-              <span>{podcast. || "0"}</span>Listeners
+            {/* Uncomment if you have listener data
+            <div className="flex items-center gap-1">
+              <FaHeadphones size={10} />
+              <span>{podcast.listeners || "0"}</span>
             </div> */}
           </div>
 
           <Link href={`/podcasts/${podcast._id}`}>
-            <button className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-sm font-medium rounded-lg text-white transition-all">
-              <FaPlay size={12} /> Listen Now
+            <button className="w-full flex items-center justify-center gap-1 px-2 py-1.5 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-xs font-medium rounded-md text-white transition-all">
+              <FaPlay size={10} /> Listen
             </button>
           </Link>
         </div>
@@ -107,7 +109,7 @@ export default function TrendingPodcasts() {
   }, [podcasts]);
 
   useEffect(() => {
-    const controls = animate(x, -activeIndex * 320, {
+    const controls = animate(x, -activeIndex * 220, { // Reduced spacing for smaller cards
       type: "spring",
       stiffness: 50,
       damping: 15,
@@ -124,7 +126,7 @@ export default function TrendingPodcasts() {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-b from-gray-950 to-gray-900 text-white relative overflow-hidden">
+    <section className="py-16 bg-gradient-to-b from-gray-950 to-gray-900 text-white relative overflow-hidden">
       {/* Floating sound waves */}
       <div className="absolute inset-0 opacity-10">
         {[...Array(12)].map((_, i) => (
@@ -142,14 +144,14 @@ export default function TrendingPodcasts() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <span className="inline-block px-3 py-1 text-xs font-semibold bg-blue-900/30 text-blue-400 rounded-full mb-4">
             TRENDING NOW
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-600">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-600">
             Popular Podcasts
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
+          <p className="text-gray-400 max-w-2xl mx-auto text-sm">
             Discover what's buzzing in our audio library. Fresh voices. Real
             conversations.
           </p>
@@ -165,7 +167,7 @@ export default function TrendingPodcasts() {
             <motion.div
               drag="x"
               dragConstraints={{ right: 0, left: -width }}
-              className="flex gap-8"
+              className="flex gap-5" // Reduced gap between cards
               style={{ x }}
             >
               {podcasts.map((podcast, index) => (
@@ -182,24 +184,24 @@ export default function TrendingPodcasts() {
           {/* Navigation Arrows */}
           <button
             onClick={handlePrev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 bg-gray-800/80 hover:bg-gray-700/80 p-3 rounded-full shadow-lg z-20"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-10 bg-gray-800/80 hover:bg-gray-700/80 p-2 rounded-full shadow-lg z-20"
           >
-            <FiArrowRight className="rotate-180" />
+            <FiArrowRight className="rotate-180 text-sm" />
           </button>
           <button
             onClick={handleNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 bg-gray-800/80 hover:bg-gray-700/80 p-3 rounded-full shadow-lg z-20"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-10 bg-gray-800/80 hover:bg-gray-700/80 p-2 rounded-full shadow-lg z-20"
           >
-            <FiArrowRight />
+            <FiArrowRight className="text-sm" />
           </button>
         </div>
 
         {/* View All Button */}
-        <div className="text-center mt-16">
+        <div className="text-center mt-12">
           <Link href="/podcasts">
-            <button className="inline-flex items-center px-6 py-3 border border-gray-700 hover:border-blue-500 text-sm font-medium rounded-full text-white bg-gray-800/50 hover:bg-gray-700/50 transition-all group">
+            <button className="inline-flex items-center px-5 py-2.5 border border-gray-700 hover:border-blue-500 text-xs font-medium rounded-full text-white bg-gray-800/50 hover:bg-gray-700/50 transition-all group">
               View All Podcasts
-              <FiArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+              <FiArrowRight className="ml-1.5 text-xs group-hover:translate-x-1 transition-transform" />
             </button>
           </Link>
         </div>

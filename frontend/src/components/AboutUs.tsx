@@ -109,7 +109,7 @@ const FloatingParticles = () => {
           key={p.id}
           initial={{ opacity: 0, y: -100 }}
           animate={{
-            opacity: [0, 0.15, 0],
+            opacity: [0, 0.3, 0],
             y: ['0%', '100vh'],
           }}
           transition={{
@@ -118,7 +118,7 @@ const FloatingParticles = () => {
             delay: p.delay,
             ease: 'linear'
           }}
-          className="absolute rounded-full bg-white/10"
+          className="absolute rounded-full bg-gradient-to-r from-cyan-400/40 to-purple-400/40"
           style={{
             left: p.x,
             top: '-10%',
@@ -150,8 +150,8 @@ const StrengthSelector = ({
         whileInView="visible"
         viewport={{ once: true }}
         onClick={() => setActiveStrength(strength)}
-        className={`px-5 md:px-7 py-3 rounded-xl font-medium transition-all flex items-center gap-3 ${activeStrength === strength
-          ? 'bg-white text-primary shadow-lg'
+        className={`px-5 md:px-7 py-3 rounded-xl font-medium transition-all flex items-center gap-3 relative overflow-hidden group ${activeStrength === strength
+          ? 'bg-gradient-to-r from-cyan-500 to-purple-500 text-white shadow-lg shadow-cyan-500/30'
           : 'bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm'
           }`}
       >
@@ -160,9 +160,10 @@ const StrengthSelector = ({
         {activeStrength === strength && (
           <motion.span
             layoutId="strengthIndicator"
-            className="w-2 h-2 rounded-full bg-indigo-500"
+            className="w-2 h-2 rounded-full bg-white"
           />
         )}
+        <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </motion.button>
     ))}
   </div>
@@ -193,7 +194,7 @@ const StationCard = ({
     onHoverEnd={() => setIsHoveringStation(null)}
     className="relative group cursor-pointer"
   >
-    <div className="relative bg-gradient-to-br from-primary-dark to-primary border border-white/10 rounded-2xl overflow-hidden shadow-2xl h-full flex flex-col">
+    <div className="relative bg-gradient-to-br from-slate-900 via-primary-dark to-primary border border-white/10 rounded-2xl overflow-hidden shadow-2xl h-full flex flex-col">
       <div className="relative h-48 overflow-hidden">
         <Image
           src={station.imageUrl || '/default-logo.jpg'}
@@ -204,7 +205,7 @@ const StationCard = ({
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-80 group-hover:opacity-70 transition-opacity duration-500" />
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
 
         <div className="absolute top-3 left-3 flex items-center gap-1.5 bg-red-500/90 backdrop-blur-sm px-2 py-1 rounded-full z-10">
           <div className="w-2 h-2 rounded-full bg-white animate-pulse" />
@@ -226,7 +227,7 @@ const StationCard = ({
           transition={{ duration: 0.2 }}
           className="absolute inset-0 flex items-center justify-center z-10"
         >
-          <div className="w-12 h-12 flex items-center justify-center rounded-full bg-white/20 backdrop-blur-sm border border-white/30">
+          <div className="w-12 h-12 flex items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-purple-500 backdrop-blur-sm border border-white/30 shadow-lg">
             <FiPlay className="text-white ml-1" size={20} />
           </div>
         </motion.div>
@@ -238,7 +239,7 @@ const StationCard = ({
             {station.name || 'Unnamed Station'}
           </h4>
           <div className="flex items-center gap-2">
-            <FiRadio size={14} className="text-indigo-300" />
+            <FiRadio size={14} className="text-cyan-300" />
             <p className="text-sm text-gray-300">
               {station.type || 'Radio'} Station
             </p>
@@ -268,7 +269,7 @@ const StationCard = ({
           {['Music', 'News', 'Sports', 'Culture'].slice(0, 3).map((tag, idx) => (
             <span
               key={idx}
-              className="text-xs bg-white/10 text-gray-300 px-2 py-1 rounded-full"
+              className="text-xs bg-gradient-to-r from-cyan-500/20 to-purple-500/20 text-gray-300 px-2 py-1 rounded-full"
             >
               {tag}
             </span>
@@ -276,14 +277,14 @@ const StationCard = ({
           <span className="text-xs text-gray-500 px-2 py-1">+2 more</span>
         </div>
 
-        {/* <button className="mt-auto w-full bg-white/10 hover:bg-white/20 text-white py-2 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center gap-2">
+        {/* <button className="mt-auto w-full bg-gradient-to-r from-cyan-500/20 to-purple-500/20 hover:from-cyan-500/30 hover:to-purple-500/30 text-white py-2 rounded-lg text-sm font-medium transition-all duration-300 flex items-center justify-center gap-2">
           <FiPlay size={14} />
           Tune In Now
         </button> */}
       </div>
 
       <div className={`absolute inset-0 rounded-2xl border-2 transition-all duration-300 pointer-events-none ${isHoveringStation === index
-        ? 'border-indigo-400/80 shadow-lg shadow-indigo-500/20'
+        ? 'border-cyan-400/50 shadow-lg shadow-cyan-500/30'
         : 'border-transparent'
         }`} />
     </div>
@@ -330,15 +331,23 @@ export default function AboutUs() {
   return (
     <section
       id="about-us"
-      className="relative bg-[#07131F] text-white py-24 px-4 sm:px-6 lg:px-8 overflow-hidden"
+      className="relative bg-gradient-to-br from-slate-900 via-primary to-slate-900 text-white py-24 px-4 sm:px-6 lg:px-8 overflow-hidden"
     >
       <FloatingParticles />
 
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/60 via-primary to-primary" />
-
-      {/* Radial gradient overlay */}
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/40 via-primary/90 to-primary" />
+      {/* Animated gradient overlay */}
+      <div className="absolute inset-0 -z-10">
+        <motion.div
+          className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-cyan-500/10 to-transparent"
+          animate={{ opacity: [0.1, 0.2, 0.1] }}
+          transition={{ duration: 8, repeat: Infinity }}
+        />
+        <motion.div
+          className="absolute bottom-0 right-0 w-full h-1/2 bg-gradient-to-t from-purple-500/10 to-transparent"
+          animate={{ opacity: [0.1, 0.2, 0.1] }}
+          transition={{ duration: 8, repeat: Infinity, delay: 2 }}
+        />
+      </div>
 
       <div className="max-w-7xl mx-auto">
         {/* Section header */}
@@ -353,7 +362,7 @@ export default function AboutUs() {
             variants={fadeUp}
             className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6 tracking-tight"
           >
-            The Future of <span className="text-indigo-200">Media</span> Is Here
+            The Future of <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">Media</span> Is Here
           </motion.h2>
           <motion.p
             variants={fadeUp}
@@ -434,7 +443,7 @@ export default function AboutUs() {
               whileInView="visible"
               viewport={{ once: true }}
             >
-              <h3 className="text-3xl md:text-4xl font-bold text-indigo-200 mb-4">
+              <h3 className="text-3xl md:text-4xl font-bold text-cyan-200 mb-4">
                 Our {currentStrength.title}
               </h3>
             </motion.div>
@@ -447,38 +456,44 @@ export default function AboutUs() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.4 + i * 0.1 }}
-                  className="flex items-start gap-3 bg-white/5 p-4 rounded-xl backdrop-blur-sm border border-white/10 hover:border-indigo-400/30 transition-colors"
+                  className="flex items-start gap-3 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 p-4 rounded-xl backdrop-blur-sm border border-white/10 hover:border-cyan-400/30 transition-all duration-300 group"
                 >
-                  <div className="flex-shrink-0 mt-1.5 w-3 h-3 rounded-full bg-indigo-400" />
-                  <p className="text-gray-300">{feature}</p>
+                  <div className="flex-shrink-0 mt-1.5 w-3 h-3 rounded-full bg-gradient-to-r from-cyan-400 to-purple-400" />
+                  <p className="text-gray-300 group-hover:text-white transition-colors">{feature}</p>
                 </motion.li>
               ))}
             </ul>
 
             {/* Stats */}
             <motion.div
-              className="grid grid-cols-3 gap-4 mt-8"
+              className="
+    grid 
+    grid-cols-1        /* mobile: 1 column */
+    sm:grid-cols-2     /* small screens (≥640px): 2 columns */
+    md:grid-cols-3     /* medium screens (≥768px): 3 columns */
+    gap-4 mt-8
+  "
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               variants={{
                 visible: {
                   transition: {
-                    staggerChildren: 0.1
-                  }
-                }
+                    staggerChildren: 0.1,
+                  },
+                },
               }}
             >
               {Object.entries(currentStrength.stats).map(([key, value], i) => (
                 <motion.div
                   key={key}
                   variants={fadeUp}
-                  className="bg-white/5 px-4 py-4 rounded-xl backdrop-blur-sm border border-white/10 hover:border-indigo-400/30 transition-colors"
+                  className="bg-gradient-to-r from-cyan-500/10 to-purple-500/10 px-4 py-4 rounded-xl backdrop-blur-sm border border-white/10 hover:border-cyan-400/30 transition-all duration-300 group"
                 >
-                  <div className="text-2xl md:text-3xl font-bold text-center text-indigo-200">
+                  <div className="text-2xl md:text-3xl font-bold text-center bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
                     {value}
                   </div>
-                  <div className="text-sm text-gray-300 mt-1 text-center capitalize">
+                  <div className="text-sm text-gray-300 mt-1 text-center capitalize group-hover:text-white transition-colors">
                     {key.replace(/([A-Z])/g, ' $1')}
                   </div>
                 </motion.div>
@@ -493,16 +508,21 @@ export default function AboutUs() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="mt-16 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 rounded-3xl p-8 md:p-12 border border-white/10 backdrop-blur-sm"
+          className="mt-16 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-3xl p-8 md:p-12 border border-white/10 backdrop-blur-sm relative overflow-hidden"
         >
-          <div className="max-w-4xl mx-auto text-center">
-            <FiTarget className="mx-auto text-indigo-300 mb-6" size={36} />
+          <div className="absolute -top-20 -right-20 w-40 h-40 bg-cyan-400/20 rounded-full blur-3xl"></div>
+          <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-purple-400/20 rounded-full blur-3xl"></div>
+
+          <div className="relative z-10 max-w-4xl mx-auto text-center">
+            <div className="inline-flex p-3 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full mb-6">
+              <FiTarget className="text-cyan-300" size={36} />
+            </div>
             <h3 className="text-2xl md:text-3xl font-bold mb-4">Our Mission</h3>
             <p className="text-lg text-gray-300 mb-6 max-w-3xl mx-auto">
               To revolutionize media in Kenya by creating authentic connections, amplifying local voices,
               and delivering exceptional content through innovative technology.
             </p>
-            <div className="h-1 w-24 bg-gradient-to-r from-indigo-400 to-purple-400 mx-auto rounded-full"></div>
+            <div className="h-1 w-24 bg-gradient-to-r from-cyan-400 to-purple-400 mx-auto rounded-full"></div>
           </div>
         </motion.div>
 
@@ -529,16 +549,38 @@ export default function AboutUs() {
             </motion.p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
-            {stations.slice(0, 8).map((station, i) => (
-              <StationCard
-                key={station._id ?? station.name ?? i}
-                station={station}
-                index={i}
-                isHoveringStation={isHoveringStation}
-                setIsHoveringStation={setIsHoveringStation}
-              />
-            ))}
+          <div className="w-full">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-center">
+              {stations.slice(0, 8).map((station, i) => (
+                <div
+                  key={station._id ?? station.name ?? i}
+                  className="w-full max-w-xs"
+                >
+                  <StationCard
+                    station={station}
+                    index={i}
+                    isHoveringStation={isHoveringStation}
+                    setIsHoveringStation={setIsHoveringStation}
+                  />
+                </div>
+              ))}
+
+              {/* Add invisible placeholder cards to center the grid on desktop */}
+              {stations.length > 0 && stations.length < 4 && (
+                <>
+                  {Array.from({ length: 4 - stations.length }).map((_, i) => (
+                    <div key={`placeholder-${i}`} className="w-full max-w-xs invisible" aria-hidden="true">
+                      <div className="w-full h-0"></div>
+                    </div>
+                  ))}
+                </>
+              )}
+            </div>
+
+            {/* Mobile scroll indicator (optional) */}
+            <div className="sm:hidden text-center mt-2 text-xs text-gray-500">
+              ← Scroll to explore →
+            </div>
           </div>
 
           {/* Stats Section */}
@@ -547,9 +589,12 @@ export default function AboutUs() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="mt-16 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 rounded-2xl p-6 md:p-8 border border-white/10 backdrop-blur-sm"
+            className="mt-16 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-2xl p-6 md:p-8 border border-white/10 backdrop-blur-sm relative overflow-hidden"
           >
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            <div className="absolute -top-10 -left-10 w-20 h-20 bg-cyan-400/20 rounded-full blur-2xl"></div>
+            <div className="absolute -bottom-10 -right-10 w-20 h-20 bg-purple-400/20 rounded-full blur-2xl"></div>
+
+            <div className="relative z-10 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
               {[
                 { value: '50+', label: 'Communities Served', icon: <FiUsers className="text-cyan-400" size={20} /> },
                 { value: '24/7', label: 'Broadcast Coverage', icon: <FiRadio className="text-yellow-400" size={20} /> },
@@ -562,7 +607,7 @@ export default function AboutUs() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.1 * i }}
-                  className="text-center p-4 bg-white/5 rounded-xl backdrop-blur-sm"
+                  className="text-center p-4 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 rounded-xl backdrop-blur-sm border border-white/10 hover:border-cyan-400/30 transition-all duration-300"
                 >
                   <div className="flex justify-center mb-2">
                     {stat.icon}
@@ -570,7 +615,7 @@ export default function AboutUs() {
                   <div className="text-2xl md:text-3xl font-bold text-white">
                     {stat.value}
                   </div>
-                  <div className="text-sm text-gray-300 mt-1">
+                  <div className="text-sm text-gray-300 mt-1 hover:text-white transition-colors">
                     {stat.label}
                   </div>
                 </motion.div>
@@ -586,7 +631,7 @@ export default function AboutUs() {
               transition={{ delay: 0.3 }}
               className="text-center mt-12"
             >
-              <button className="px-8 py-4 rounded-full bg-white/10 text-white hover:bg-white/20 transition-all duration-300 flex items-center gap-2 mx-auto backdrop-blur-sm border border-white/10 hover:border-white/30 group">
+              <button className="px-8 py-4 rounded-full bg-gradient-to-r from-cyan-500/20 to-purple-500/20 text-white hover:from-cyan-500/30 hover:to-purple-500/30 transition-all duration-300 flex items-center gap-2 mx-auto backdrop-blur-sm border border-white/10 hover:border-white/30 group">
                 View All {stations.length} Stations
                 <motion.span
                   initial={{ x: 0 }}
@@ -606,16 +651,19 @@ export default function AboutUs() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="mt-24 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 rounded-3xl p-8 md:p-12 border border-white/10 backdrop-blur-sm"
+          className="mt-24 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-3xl p-8 md:p-12 border border-white/10 backdrop-blur-sm relative overflow-hidden"
         >
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="absolute -top-20 -right-20 w-40 h-40 bg-cyan-400/20 rounded-full blur-3xl"></div>
+          <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-purple-400/20 rounded-full blur-3xl"></div>
+          
+          <div className="relative z-10 max-w-4xl mx-auto text-center">
             <h3 className="text-2xl md:text-3xl font-bold mb-4">Join Our Journey</h3>
             <p className="text-lg text-gray-300 mb-8 max-w-3xl mx-auto">
               Be part of the media revolution in Kenya. Together, we can shape the future of storytelling and connection.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact">
-                <button className="px-8 py-3 bg-white text-primary rounded-full font-medium hover:bg-gray-100 transition">
+                <button className="px-8 py-3 bg-gradient-to-r from-cyan-500 to-purple-500 text-white rounded-full font-medium hover:from-cyan-600 hover:to-purple-600 transition-all shadow-lg shadow-cyan-500/20">
                   Partner With Us
                 </button>
               </Link>
