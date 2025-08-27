@@ -96,7 +96,7 @@ export default function Home() {
           <OurServices />
           <TrendingPodcasts />
           <TrendingNews />
-          <Events />
+          {/* <Events /> */}
           <FAQs />
           <Feedback />
       </div>

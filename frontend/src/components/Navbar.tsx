@@ -26,7 +26,7 @@ const Navbar = ({ isScrolled = false }: NavbarProps) => {
             : 'bg-transparent py-4'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
           {/* Logo */}
           <Link href="/" prefetch className="flex items-center gap-2 z-50">
             <motion.div

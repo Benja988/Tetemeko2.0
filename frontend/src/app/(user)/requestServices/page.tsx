@@ -175,7 +175,7 @@ export default function RequestServicesPage() {
               className="relative rounded-xl overflow-hidden shadow-xl aspect-video"
             >
               <Image
-                src="/hero-images/studio-production.jpg"
+                src="/hero-images/station5.jpg"
                 alt="Media production team working in studio"
                 fill
                 className="object-cover"
