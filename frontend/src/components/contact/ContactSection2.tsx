@@ -9,7 +9,7 @@ export default function ContactSection2() {
       person: "Customer Support",
       phone: "+255 700 123 456",
       whatsapp: "+255 700 123 456",
-      email: "info@tetemekomedia.com",
+      email: "info@tetemekomediagroup.org",
       hours: "Mon–Fri, 9AM–5PM",
     },
     {
@@ -17,7 +17,7 @@ export default function ContactSection2() {
       person: "Joshua M.",
       phone: "+255 744 555 111",
       whatsapp: "+255 744 555 111",
-      email: "support@tetemekomedia.com",
+      email: "support@tetemekomediagroup.org",
       hours: "24/7 Support Available",
     },
     {
@@ -25,7 +25,7 @@ export default function ContactSection2() {
       person: "Zainab K.",
       phone: "+255 711 333 222",
       whatsapp: "+255 711 333 222",
-      email: "ads@tetemekomedia.com",
+      email: "ads@tetemekomediagroup.org",
       hours: "Mon–Fri, 10AM–6PM",
     },
     {
@@ -33,7 +33,7 @@ export default function ContactSection2() {
       person: "Kelvin R.",
       phone: "+255 786 888 000",
       whatsapp: "+255 786 888 000",
-      email: "booking@tetemekomedia.com",
+      email: "booking@tetemekomediagroup.org",
       hours: "Mon–Sat, 8AM–8PM",
     },
   ];

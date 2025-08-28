@@ -38,7 +38,7 @@ export default function StationsSection5() {
     <section className="py-20 px-6 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-[url('/africa-map.svg')] bg-center bg-no-repeat opacity-10" />
+        <div className="absolute inset-0 bg-center bg-no-repeat opacity-10" />
         <div className="absolute inset-0 bg-gradient-to-r from-primary/30 to-primary/90" />
       </div>
 

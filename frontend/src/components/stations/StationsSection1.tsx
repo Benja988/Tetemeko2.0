@@ -75,7 +75,7 @@ export default function StationsSection1() {
             >
               <button
                 onClick={() => document.getElementById("stations-grid")?.scrollIntoView({ behavior: "smooth" })}
-                className="px-8 py-3 bg-gradient-to-r from-secondary to-accent rounded-full font-semibold hover:shadow-lg hover:shadow-secondary/30 transition-all"
+                className="px-8 py-3 text-primary hover:text-primary bg-gradient-to-r from-secondary to-accent rounded-full font-semibold hover:shadow-lg hover:shadow-secondary/30 transition-all"
               >
                 Browse Stations
               </button>

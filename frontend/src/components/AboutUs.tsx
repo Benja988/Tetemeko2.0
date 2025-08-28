@@ -468,12 +468,12 @@ export default function AboutUs() {
             <motion.div
               className="
     grid 
-    grid-cols-1        /* mobile: 1 column */
-    sm:grid-cols-2     /* small screens (≥640px): 2 columns */
-    md:grid-cols-3     /* medium screens (≥768px): 3 columns */
+    grid-cols-1        
+    sm:grid-cols-2 
+    md:grid-cols-3   
     gap-4 mt-8
   "
-              initial="hidden"
+              initial="hover"
               whileInView="visible"
               viewport={{ once: true }}
               variants={{

@@ -3,6 +3,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -60,6 +61,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={inter.variable}>
       <body suppressHydrationWarning className="bg-primary font-sans h-full overflow-x-hidden">
         {children}
+        <SpeedInsights />
       </body>
     </html>
   );

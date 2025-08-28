@@ -85,8 +85,8 @@ export default function StationsSection3() {
               onClick={() => setFilter('all')}
               className={`px-4 py-2 rounded-full text-sm font-medium ${
                 filter === 'all' 
-                  ? 'bg-secondary text-white' 
-                  : 'bg-white/10 text-gray-300 hover:bg-white/20'
+                  ? 'bg-green-700 text-white' 
+                  : 'bg-green/10 text-white hover:bg-white/20'
               }`}
             >
               All Stations
@@ -96,7 +96,7 @@ export default function StationsSection3() {
               className={`px-4 py-2 rounded-full text-sm font-medium ${
                 filter === 'radio' 
                   ? 'bg-secondary text-white' 
-                  : 'bg-white/10 text-gray-300 hover:bg-white/20'
+                  : 'bg-white/10 text-white hover:bg-white/20'
               }`}
             >
               Radio
@@ -278,13 +278,13 @@ export default function StationsSection3() {
           </div>
           <div className="bg-white/5 p-4 rounded-lg">
             <div className="text-2xl font-bold">
-              {stations.filter(s => s.type.toLowerCase() === 'radio').length}
+              {stations.filter(s => s.type === 'Radio Station').length}
             </div>
             <div className="text-sm text-gray-400">Radio Stations</div>
           </div>
           <div className="bg-white/5 p-4 rounded-lg">
             <div className="text-2xl font-bold">
-              {stations.filter(s => s.type.toLowerCase() === 'tv').length}
+              {stations.filter(s => s.type === 'TV Station').length}
             </div>
             <div className="text-sm text-gray-400">TV Channels</div>
           </div>

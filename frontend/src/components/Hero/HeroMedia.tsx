@@ -6,7 +6,7 @@ export default function HeroMedia({ media }: { media: { type: 'video' | 'image';
   return (
     <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
       {/* Overlay gradient for better text readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60 z-10" />
+      <div className="absolute inset-0 z-10" />
       
       <AnimatePresence mode="wait">
         {media.type === 'video' ? (

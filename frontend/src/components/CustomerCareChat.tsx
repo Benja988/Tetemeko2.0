@@ -46,7 +46,7 @@ export default function CustomerCareChat() {
     } else if (lowerQuestion.includes('location') || lowerQuestion.includes('studio')) {
       return "Our main studio is located in Nairobi, with regional studios in Kisumu and Mombasa. You can find our exact addresses on the Contact page."
     } else if (lowerQuestion.includes('advertise')) {
-      return "We offer various advertising packages! Please email sales@tetemeko.com with your requirements and our team will get back to you with options."
+      return "We offer various advertising packages! Please email sales@tetemekomediagroup.org with your requirements and our team will get back to you with options."
     } else if (lowerQuestion.includes('song')) {
       return "Yes! You can request songs by calling your favorite station's hotline or by using the request feature in our mobile app."
     } else {
