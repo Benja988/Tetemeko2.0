@@ -2,6 +2,14 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   // output: "export",
+  async rewrites() {
+    return [
+      {
+        source: "/api.thehyperscope/:path*", 
+        destination: "https://api.thehyperscope.com/api/v1/:path*", 
+      },
+    ]
+  },
   typescript: {
     ignoreBuildErrors: true,
   },  

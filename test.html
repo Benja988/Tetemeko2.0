@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feature Section Demo</title>
+  <style>
+    body {
+      background: #0a0a0a;
+      color: #fff;
+      font-family: system-ui, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .feature-container {
+      position: relative;
+      width: 600px;
+      height: 400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .cpu-box {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      border-radius: 16px;
+      background: linear-gradient(145deg, #1e293b, #334155);
+      box-shadow: 0 0 30px rgba(0, 200, 255, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      font-size: 18px;
+      text-transform: uppercase;
+      color: #38bdf8;
+      z-index: 2;
+    }
+
+    svg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    .glow-path {
+      stroke-width: 3;
+      fill: none;
+      stroke-linecap: round;
+    }
+  </style>
+</head>
+<body>
+  <div class="feature-container">
+    <!-- CPU Box -->
+    <div class="cpu-box">CPU</div>
+
+    <!-- Glowing SVG Lines -->
+    <svg viewBox="0 0 600 400">
+      <defs>
+        <!-- Blue gradient -->
+        <linearGradient id="blueGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#38bdf8">
+            <animate attributeName="stop-color" values="#38bdf8;#0ea5e9;#38bdf8" dur="4s" repeatCount="indefinite" />
+          </stop>
+          <stop offset="100%" stop-color="#0ea5e9">
+            <animate attributeName="stop-color" values="#0ea5e9;#38bdf8;#0ea5e9" dur="4s" repeatCount="indefinite" />
+          </stop>
+        </linearGradient>
+
+        <!-- Pink gradient -->
+        <linearGradient id="pinkGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#ec4899">
+            <animate attributeName="stop-color" values="#ec4899;#db2777;#ec4899" dur="5s" repeatCount="indefinite" />
+          </stop>
+          <stop offset="100%" stop-color="#db2777">
+            <animate attributeName="stop-color" values="#db2777;#ec4899;#db2777" dur="5s" repeatCount="indefinite" />
+          </stop>
+        </linearGradient>
+
+        <!-- Orange gradient -->
+        <linearGradient id="orangeGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#f97316">
+            <animate attributeName="stop-color" values="#f97316;#ea580c;#f97316" dur="6s" repeatCount="indefinite" />
+          </stop>
+          <stop offset="100%" stop-color="#ea580c">
+            <animate attributeName="stop-color" values="#ea580c;#f97316;#ea580c" dur="6s" repeatCount="indefinite" />
+          </stop>
+        </linearGradient>
+      </defs>
+
+      <!-- Blue connection -->
+      <path class="glow-path" d="M300,200 L100,100" stroke="url(#blueGlow)" />
+      <circle cx="100" cy="100" r="6" fill="#38bdf8" />
+
+      <!-- Pink connection -->
+      <path class="glow-path" d="M300,200 L500,100" stroke="url(#pinkGlow)" />
+      <circle cx="500" cy="100" r="6" fill="#ec4899" />
+
+      <!-- Orange connection -->
+      <path class="glow-path" d="M300,200 L300,350" stroke="url(#orangeGlow)" />
+      <circle cx="300" cy="350" r="6" fill="#f97316" />
+    </svg>
+  </div>
+</body>
+</html>
